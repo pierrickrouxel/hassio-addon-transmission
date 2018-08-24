@@ -8,7 +8,8 @@ COPY rootfs /
 # Setup base
 RUN apk add --no-cache \
     coreutils=8.29-r2 \
-    transmission-daemon
+    transmission-daemon \
+    openvpn
 
 # Scrip to run after startup
 CMD ["/usr/bin/run.sh"]
@@ -22,7 +23,7 @@ ARG BUILD_VERSION
 # Labels
 LABEL \
     io.hass.name="Transmission" \
-    io.hass.description="The torrent client for Hass.io" \
+    io.hass.description="The torrent client for Hass.io with OpenVPN support" \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \

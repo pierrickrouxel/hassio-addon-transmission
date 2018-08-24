@@ -2,7 +2,7 @@
     "name": "Transmission",
     "version": "dev",
     "slug": "transmission",
-    "description": "The torrent client for Hass.io",
+    "description": "The torrent client for Hass.io with OpenVPN support",
     "url": "https://github.com/pierrickrouxel/hassio-addon-transmission",
     "webui": "http://[HOST]:[PORT:9091]/transmission/web/",
     "startup": "services",
@@ -23,6 +23,12 @@
       "51413/tcp": 51413,
       "51413/udp": 51413
     },
+    "privileged": [
+      "NET_ADMIN"
+    ],
+    "devices": [
+      "/dev/net/tun:/dev/net/tun:rwm"
+    ],
     "hassio_api": true,
     "homeassistant_api": false,
     "host_network": false,
@@ -30,13 +36,21 @@
       "log_level": "info",
       "authentication_required": false,
       "username": "",
-      "password": ""
+      "password": "",
+      "openvpn_enabled": false,
+      "openvpn_config": "",
+      "openvpn_username": "",
+      "openvpn_password": ""
     },
     "schema": {
       "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)",
       "authentication_required": "bool",
       "username": "str",
-      "password": "str"
+      "password": "str",
+      "openvpn_enabled": "bool",
+      "openvpn_config": "str",
+      "openvpn_username": "str",
+      "openvpn_password": "str"
     },
     "environment": {
       "LOG_FORMAT": "{LEVEL}: {MESSAGE}"

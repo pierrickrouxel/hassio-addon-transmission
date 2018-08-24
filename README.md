@@ -1,6 +1,6 @@
 # Transmission addon for Hass.io
 
-The torrent client for Hass.io.
+The torrent client for Hass.io with OpenVPN support.
 
 ## Configuration
 
@@ -16,7 +16,11 @@ Transmission add-on configuration:
   "log_level": "info",
   "authentication_required": false,
   "username": "",
-  "password": ""
+  "password": "",
+  "openvpn_enabled": false,
+  "openvpn_config": "",
+  "openvpn_username": "",
+  "openvpn_password": ""
 }
 ```
 
@@ -50,13 +54,28 @@ The username for authentication.
 
 The password for authentication.
 
+### Option: `openvpn_enabled`
+
+Enable OpenVPN to anonymize your torrent activity.
+
+### Option: `openvpn_config`
+
+The name of .ovpn file. You should put it in `/config/openvpn`.
+
+### Option: `openvpn_username`
+
+Your OpenVPN username.
+
+### Option: `openvpn_config`
+
+Your OpenVPN password.
+
 ## Changelog & Releases
 
-This repository keeps a change log using [GitHub's releases][releases]
-functionality. The format of the log is based on
-[Keep a Changelog][keepchangelog].
+The format of the log is based on
+[Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-Releases are based on [Semantic Versioning][semver], and use the format
+Releases are based on [Semantic Versioning](http://semver.org/spec/v2.0.0.html), and use the format
 of ``MAJOR.MINOR.PATCH``. In a nutshell, the version will be incremented
 based on the following:
 
