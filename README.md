@@ -70,6 +70,20 @@ Your OpenVPN username.
 
 Your OpenVPN password.
 
+## Embedding into Home Assistant
+
+It is possible to embed Transmission directly into Home Assistant. Home Assistant provides the panel_iframe component, for these purposes.
+
+Example configuration:
+
+```
+panel_iframe:
+  transmission:
+    title: Transmission
+    icon: mdi:download
+    url: http://addres.to.your.hass.io:9091/transmission/web/
+```
+
 ## Changelog & Releases
 
 The format of the log is based on
