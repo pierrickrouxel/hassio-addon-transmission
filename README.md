@@ -2,6 +2,8 @@
 
 The torrent client for Hass.io with OpenVPN support.
 
+![Logo](transmission/logo.png?raw=true "Logo")
+
 ## Installation
 
 The installation of this add-on is pretty straightforward and not different in
