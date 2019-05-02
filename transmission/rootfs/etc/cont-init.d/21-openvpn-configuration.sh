@@ -1,21 +1,19 @@
-#!/usr/bin/with-contenv bash
+#!/usr/bin/with-contenv bashio
 # ==============================================================================
-# shellcheck disable=SC1091
-source /usr/lib/hassio-addons/base.sh
 
 declare openvpn_config
 declare openvpn_username
 declare openvpn_password
 
-if hass.config.true 'openvpn_enabled'; then
+if bashio::config.true 'openvpn_enabled'; then
 
-  openvpn_config=$(hass.config.get 'openvpn_config')
+  openvpn_config=$(bashio::config 'openvpn_config')
 
   cp "/config/openvpn/${openvpn_config}.ovpn" /etc/openvpn/config.ovpn
 
-  openvpn_username=$(hass.config.get 'openvpn_username')
+  openvpn_username=$(bashio::config 'openvpn_username')
   echo "${openvpn_username}" > /etc/openvpn/credentials
-  openvpn_password=$(hass.config.get 'openvpn_password')
+  openvpn_password=$(bashio::config 'openvpn_password')
   echo "${openvpn_password}" >> /etc/openvpn/credentials
 
   sed -i 's/auth-user-pass.*/auth-user-pass \/etc\/openvpn\/credentials/g' /etc/openvpn/config.ovpn

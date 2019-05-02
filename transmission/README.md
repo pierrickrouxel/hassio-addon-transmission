@@ -2,8 +2,6 @@
 
 The torrent client for Hass.io with OpenVPN support.
 
-![Logo](transmission/logo.png?raw=true "Logo")
-
 ## Installation
 
 The installation of this add-on is pretty straightforward and not different in
@@ -82,8 +80,7 @@ Your OpenVPN password.
 
 ## Embedding into Home Assistant
 
-This addon supports ingress, thus it can simply be integrated into Home Assistant without having to forward any additional ports.
-Here is an example configuration:
+This addon supports ingress, thus it can simply be integrated into Home Assistant without having to forward any additional ports. Here is an example configuration:
 
 ```yaml
 transmission:
