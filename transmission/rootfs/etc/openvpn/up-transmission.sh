@@ -1,13 +1,10 @@
-#!/usr/bin/with-contenv bash
+#!/usr/bin/with-contenv bashio
 # ==============================================================================
-# shellcheck disable=SC1091
-source /usr/lib/hassio-addons/base.sh
-
 declare CONFIG
 
 CONFIG=$(</data/transmission/settings.json)
 
-CONFIG=$(hass.jq "${CONFIG}" ".\"bind-address-ipv4\"=\"${1}\"")
+CONFIG=$(bashio::jq "${CONFIG}" ".\"bind-address-ipv4\"=\"${1}\"")
 
 echo "${CONFIG}" > /data/transmission/settings.json
 

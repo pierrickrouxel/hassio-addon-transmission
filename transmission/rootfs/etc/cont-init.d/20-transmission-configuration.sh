@@ -1,40 +1,38 @@
-#!/usr/bin/with-contenv bash
+#!/usr/bin/with-contenv bashio
 # ==============================================================================
-# shellcheck disable=SC1091
-source /usr/lib/hassio-addons/base.sh
 
 declare CONFIG
 declare authentication_required
 declare username
 declare password
 
-if ! hass.directory_exists '/data/transmission'; then
+if ! bashio::fs.directory_exists '/data/transmission'; then
   mkdir '/data/transmission'
 fi
 
-if ! hass.file_exists '/data/transmission/settings.json'; then
+if ! bashio::fs.file_exists '/data/transmission/settings.json'; then
   echo "{}" > /data/transmission/settings.json
 fi
 
 CONFIG=$(</data/transmission/settings.json)
 
 # Defaults
-CONFIG=$(hass.jq "${CONFIG}" ".\"incomplete-dir\"=\"/share/incomplete\"")
-CONFIG=$(hass.jq "${CONFIG}" ".\"incomplete-dir-enabled\"=true")
-CONFIG=$(hass.jq "${CONFIG}" ".\"download-dir\"=\"/share/downloads\"")
-CONFIG=$(hass.jq "${CONFIG}" ".\"rpc-whitelist-enabled\"=false")
-CONFIG=$(hass.jq "${CONFIG}" ".\"rpc-host-whitelist-enabled\"=false")
-CONFIG=$(hass.jq "${CONFIG}" ".\"bind-address-ipv4\"=\"0.0.0.0\"")
+CONFIG=$(bashio::jq "${CONFIG}" ".\"incomplete-dir\"=\"/share/incomplete\"")
+CONFIG=$(bashio::jq "${CONFIG}" ".\"incomplete-dir-enabled\"=true")
+CONFIG=$(bashio::jq "${CONFIG}" ".\"download-dir\"=\"/share/downloads\"")
+CONFIG=$(bashio::jq "${CONFIG}" ".\"rpc-whitelist-enabled\"=false")
+CONFIG=$(bashio::jq "${CONFIG}" ".\"rpc-host-whitelist-enabled\"=false")
+CONFIG=$(bashio::jq "${CONFIG}" ".\"bind-address-ipv4\"=\"0.0.0.0\"")
 
-authentication_required=$(hass.config.get 'authentication_required')
-CONFIG=$(hass.jq "${CONFIG}" ".\"rpc-authentication-required\"=${authentication_required}")
-
-
-username=$(hass.config.get 'username')
-CONFIG=$(hass.jq "${CONFIG}" ".\"rpc-username\"=\"${username}\"")
+authentication_required=$(bashio::config 'authentication_required')
+CONFIG=$(bashio::jq "${CONFIG}" ".\"rpc-authentication-required\"=${authentication_required}")
 
 
-password=$(hass.config.get 'password')
-CONFIG=$(hass.jq "${CONFIG}" ".\"rpc-password\"=\"${password}\"")
+username=$(bashio::config 'username')
+CONFIG=$(bashio::jq "${CONFIG}" ".\"rpc-username\"=\"${username}\"")
+
+
+password=$(bashio::config 'password')
+CONFIG=$(bashio::jq "${CONFIG}" ".\"rpc-password\"=\"${password}\"")
 
 echo "${CONFIG}" > /data/transmission/settings.json
