@@ -8,10 +8,9 @@ COPY rootfs /
 # Setup base
 RUN apk add --no-cache \
     coreutils \
+    nginx \
     transmission-daemon \
     openvpn
-RUN apk add --no-cache \
-    nginx=1.14.2-r4
 # Small hack needed for ingress support
 #
 # Transmission always uses "transmission" as a subdirectory in the URL, so the web interface can for instance be found at:
