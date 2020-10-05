@@ -74,7 +74,7 @@ The name of .ovpn file. You should put it in `/config/openvpn`.
 
 Your OpenVPN username.
 
-### Option: `openvpn_config`
+### Option: `openvpn_password`
 
 Your OpenVPN password.
 
