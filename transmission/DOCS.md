@@ -74,7 +74,7 @@ The name of .ovpn file. You should put it in `/config/openvpn`.
 
 Your OpenVPN username.
 
-### Option: `openvpn_config`
+### Option: `openvpn_password`
 
 Your OpenVPN password.
 
@@ -85,10 +85,6 @@ This addon supports ingress, thus it can simply be integrated into Home Assistan
 ```yaml
 transmission:
   host: f6fddefc-transmission
-  monitored_conditions:
-    - download_speed
-    - upload_speed
-    - active_torrents
 ```
 
 If you want, you can add an icon to the sidebar by toggling *Show in Sidebar* as well.
