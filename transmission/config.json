@@ -12,6 +12,7 @@
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
     "map": [
       "config:rw",
+      "media:rw",
       "share:rw",
       "ssl"
     ],
