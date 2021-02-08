@@ -31,7 +31,7 @@
       "NET_ADMIN"
     ],
     "devices": [
-      "/dev/net/tun:/dev/net/tun:rwm"
+      "/dev/net/tun"
     ],
     "hassio_api": true,
     "homeassistant_api": false,
