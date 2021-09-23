@@ -5,6 +5,8 @@ declare CONFIG
 declare authentication_required
 declare username
 declare password
+declare downloads_dir
+declare incomplete_dir
 
 if ! bashio::fs.directory_exists '/data/transmission'; then
   mkdir '/data/transmission'
@@ -17,9 +19,11 @@ fi
 CONFIG=$(</data/transmission/settings.json)
 
 # Defaults
-CONFIG=$(bashio::jq "${CONFIG}" ".\"incomplete-dir\"=\"/share/incomplete\"")
+incomplete_dir=$(bashio::config 'incomplete_dir')
+downloads_dir=$(bashio::config 'downloads_dir')
+CONFIG=$(bashio::jq "${CONFIG}" ".\"incomplete-dir\"=\"${incomplete_dir}\"")
 CONFIG=$(bashio::jq "${CONFIG}" ".\"incomplete-dir-enabled\"=true")
-CONFIG=$(bashio::jq "${CONFIG}" ".\"download-dir\"=\"/share/downloads\"")
+CONFIG=$(bashio::jq "${CONFIG}" ".\"download-dir\"=\"${downloads_dir}\"")
 CONFIG=$(bashio::jq "${CONFIG}" ".\"rpc-whitelist-enabled\"=false")
 CONFIG=$(bashio::jq "${CONFIG}" ".\"rpc-host-whitelist-enabled\"=false")
 CONFIG=$(bashio::jq "${CONFIG}" ".\"bind-address-ipv4\"=\"0.0.0.0\"")
